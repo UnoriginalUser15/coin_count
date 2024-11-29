@@ -1,0 +1,22 @@
+Overall:
+    Bags Checked - 100
+    Valid Bags - 80
+    Funds - 400
+    Accuracy - 80.0 %
+    
+Jeremy Json:
+    Bags Checked - 0
+    Valid Bags - 0
+    Accuracy - N/A %
+Greg Google:
+    Bags Checked - 0
+    Valid Bags - 0
+    Accuracy - N/A %
+Micheal Microsoft:
+    Bags Checked - 0
+    Valid Bags - 0
+    Accuracy - N/A %
+Larry Lenovo:
+    Bags Checked - 0
+    Valid Bags - 0
+    Accuracy - N/A %
