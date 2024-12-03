@@ -6,31 +6,31 @@ import ast
 
 """reads the data from 'CoinCount.txt' and converts it into a list"""
 def read():
-    with open(f".\\Coin Count\\Data.txt", "r") as txt: # opens CoinCount.txt in read mode
+    with open("Data.txt", "r") as txt: # opens CoinCount.txt in read mode
         return ast.literal_eval(txt.read()) # reads the .txt and convert's it from a string to a list
 
 
 """writes the data from the 'data' variable into 'CoinCount.txt' and 'Data.txt"""
 def write(data):
-    with open(f".\\Coin Count\\Data.txt", "w") as txt: # writes the unformatted list into 'Data.txt'
+    with open("Data.txt", "w") as txt: # writes the unformatted list into 'Data.txt'
         txt.write(str(data))
 
-    with open(f".\\Coin Count\\CoinCount.txt", "w") as txt: # writes the formatted list into 'CoinCount.txt'
+    with open("CoinCount.txt", "w") as txt: # writes the formatted list into 'CoinCount.txt'
         # writes the 'overall' dict at the start of 'CoinCount.txt'
         txt.write(f"""Overall:
-    Bags Checked - {data[0]["bags_checked"]}
-    Valid Bags - {data[0]["valid_bags"]}
-    Funds - {data[0]["total"]}
-    Accuracy - {accuracy(data[0]["valid_bags"], data[0]["bags_checked"])} %
+| Bags Checked - {data[0]["bags_checked"]}
+| Valid Bags - {data[0]["valid_bags"]}
+| Funds - {data[0]["total"]}
+| Accuracy - {accuracy(data[0]["valid_bags"], data[0]["bags_checked"])} %
     """)
         
         for line in data: # iterates through the list
             if line["name"] != "overall": # prevents it from writing the 'overall' dict
                 txt.write(f"""
 {line["name"]}:
-    Bags Checked - {line["bags_checked"]}
-    Valid Bags - {line["valid_bags"]}
-    Accuracy - {accuracy(line["valid_bags"], line["bags_checked"])} %""")
+| Bags Checked - {line["bags_checked"]}
+| Valid Bags - {line["valid_bags"]}
+| Accuracy - {accuracy(line["valid_bags"], line["bags_checked"])} %""")
 
 
 """calculates the accuracy of a volunteer for the 'write()' function"""
@@ -71,8 +71,27 @@ def bag_check():
 
 
 """displays information about overall bags counted and individual volunteer performance"""
-def volunteer_info():
-    pass
+def volunteer_info(data):
+    accuracy_dict = {} # creates a temp dictionary that records volunteer accuracy
+    
+    for line in data: # iterates throught 'data' to fill 'accuracy_dict'
+        if line["name"] != "overall": # excludes the 'overall' dict
+            accuracy_dict.update({line["name"]: accuracy(line["valid_bags"], line["bags_checked"])})
+
+    sorted_accuracy = dict(sorted(accuracy_dict.items())) # sorts volunteer accuracy by accuracy in decending order
+
+    print("Information displayed in decending accuracy order:\n")
+# iterates through 'data' and searches for the values of the key "name" in order of 'sorted_accuracy' then prints them
+    for name in sorted_accuracy:
+        for i in range(len(data)):
+            if name == data[i]["name"]:
+                print(f"""{data[i]["name"]}:
+| Bags Checked - {data[i]["bags_checked"]}
+| Valid Bags - {data[i]["valid_bags"]}
+| Accuracy - {accuracy(data[i]["valid_bags"], data[i]["bags_checked"])} %
+""")
+    input("""-------------------
+Press ENTER to return to the options menu """)
 
 
 """adds a new volunteer to 'CoinCount.txt'"""
@@ -115,16 +134,16 @@ Here is the data currently stored in temporary memory:
 ### MAIN PROGRAM ###
 
 data = read() # assigns the list created in 'read()' to a variable
-# dictionary of different possible coins, format = coin: [bag value, coin weight]
+# dictionary of different possible coins, format = coin: [bag value, bag weight, coin weight]
 coin_dict = {
-    "£2": [20, 12.00],
-    "£1": [20, 8.75],
-    "50p": [10, 8.00],
-    "20p": [10, 5.00],
-    "10p": [5, 6.50],
-    "5p": [5, 2.35],
-    "2p": [1, 7.12],
-    "1p": [1, 3.56]
+    "£2": [20, 120.00 , 12.00],
+    "£1": [20, 175, 8.75],
+    "50p": [10, 160, 8.00],
+    "20p": [10, 250, 5.00],
+    "10p": [5, 325, 6.50],
+    "5p": [5, 235, 2.35],
+    "2p": [1, 356, 7.12],
+    "1p": [1, 356, 3.56]
     }
 valid_menu = ["1", "2", "3", "4"] # used in 'menu()' to verify if menu selection is valid
 active_session = True # used to control if the while loop is active or not
@@ -138,7 +157,7 @@ while active_session == True:
         case "1":
             bag_check()
         case "2":
-            volunteer_info()
+            volunteer_info(data)
         case "3":
             data = add_new_volunteer(data)
         case "4":
