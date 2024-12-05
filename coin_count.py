@@ -23,7 +23,6 @@ def write(data):
 | Funds - {data[0]["funds"]}
 | Accuracy - {accuracy(data[0]["valid_bags"], data[0]["bags_checked"])} %
 ===================""")
-        
         for line in data: # iterates through the list
             if line["name"] != "overall": # prevents it from writing the 'overall' dict
                 txt.write(f"""
@@ -36,17 +35,16 @@ def write(data):
 
 """calculates the accuracy of a volunteer for the 'write()' function"""
 def accuracy(valid, total):
-    # if volunteer hasn't checked any bags yet, it will return N/A
     try:
         return round((valid / total) * 100, 2)
-    except:
+    except: # if volunteer hasn't checked any bags yet, it will return N/A
         return "N/A"
 
 
 """creates the menu that the user can use to choose what they want to do with the program"""
 def menu(valid_menu):
     # loops until a valid option has been selected
-    while True:
+    while True: 
         print("""==| The Coincount-inator |==
 
 By Doofenshmirtz Evil Inc. - Trying to take over the tri-state area est. 1977
@@ -95,14 +93,13 @@ Make sure the capitalisation of the name is correct.""")
         # breaks while loop if 'volunteer_name' is in the system
         else:
             print("-------------------")
-            
             break
     
     # makes sure a valid coin is input before continuing
     while True:
-        coin = input("Input coin type: ")
+        coin = input("Input coin type: ").strip()
         # checks if user wants to cancel
-        if volunteer_name == "":
+        if coin == "":
             print("\nCancelling bag check...")
             time.sleep(2) # the fake-loading-time-inator makes the program wait before continuing
             return data, False
@@ -113,14 +110,19 @@ Make sure the capitalisation of the name is correct.""")
         # breaks while loop if 'coin' is valid
         else:
             print("-------------------")
-            
             break
     
     # checks if bag weight is valid or not (the actual purpose of the bag check-inator)
     while True:
-        # the try except checks if the user has input a numerical value or not
+        bag_weight = input("Input bag weight (g): ").strip()
+        # checks if user wants to cancel
+        if bag_weight == "":
+            print("\nCancelling bag check...")
+            time.sleep(2) # the fake-loading-time-inator makes the program wait before continuing
+            return data, False
+        # the try except checks if the user has input a numerical value or not and converts 'bag_weight' to a float
         try:
-            bag_weight = round(float(input("Input bag weight (g): ")), 2)
+            bag_weight = round(float(bag_weight), 2)
         except:
             print("You have to input a numerical value for the weight")
             continue
@@ -281,7 +283,6 @@ active_session = True # used to control if the while loop is active or not
 while active_session == True:
     os.system("cls") # clears the terminal, specifically on windows
     selection = menu(valid_menu)
-
     # runs the process the user requested in the menu
     match selection:
         case "1":
@@ -296,5 +297,4 @@ while active_session == True:
         case "3":
             data = add_new_volunteer(data)
         case "4":
-            active_session = quit_session(data)
-# yes i purposely it exactly 300 lines because it makes the autism happy
+            active_session = quit_session(data) # yes i purposely it exactly 300 lines because it makes the autism happy
