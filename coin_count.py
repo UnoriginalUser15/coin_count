@@ -297,4 +297,4 @@ while active_session == True:
             data = add_new_volunteer(data)
         case "4":
             active_session = quit_session(data)
-# yes i did find random places to add whitespace to make it exactly 300 lines because it makes the autism happy
+# yes i purposely it exactly 300 lines because it makes the autism happy
