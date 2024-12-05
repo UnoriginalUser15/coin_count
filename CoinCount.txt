@@ -1,26 +1,26 @@
 Overall:
-| Bags Checked - 3
-| Valid Bags - 2
-| Funds - 21
-| Accuracy - 66.67 %
+| Bags Checked - 0
+| Valid Bags - 0
+| Funds - 0
+| Accuracy - N/A %
 ===================
 Jeremy Json:
-| Bags Checked - 1
-| Valid Bags - 1
-| Accuracy - 100.0 %
+| Bags Checked - 0
+| Valid Bags - 0
+| Accuracy - N/A %
 -------------------
 Terry Txt:
-| Bags Checked - 2
-| Valid Bags - 1
-| Accuracy - 50.0 %
+| Bags Checked - 0
+| Valid Bags - 0
+| Accuracy - N/A %
 -------------------
 Cinthia Csv:
-| Bags Checked - 1
-| Valid Bags - 1
-| Accuracy - 100.0 %
+| Bags Checked - 0
+| Valid Bags - 0
+| Accuracy - N/A %
 -------------------
 Perry Pdf:
-| Bags Checked - 1
-| Valid Bags - 1
-| Accuracy - 100.0 %
+| Bags Checked - 0
+| Valid Bags - 0
+| Accuracy - N/A %
 -------------------
