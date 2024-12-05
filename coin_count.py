@@ -3,7 +3,6 @@ import time
 import ast
 
 
-
 """reads the data from 'CoinCount.txt' and converts it into a list"""
 def read():
     with open("Data.txt", "r") as txt: # opens CoinCount.txt in read mode
@@ -96,6 +95,7 @@ Make sure the capitalisation of the name is correct.""")
         # breaks while loop if 'volunteer_name' is in the system
         else:
             print("-------------------")
+            
             break
     
     # makes sure a valid coin is input before continuing
@@ -113,6 +113,7 @@ Make sure the capitalisation of the name is correct.""")
         # breaks while loop if 'coin' is valid
         else:
             print("-------------------")
+            
             break
     
     # checks if bag weight is valid or not (the actual purpose of the bag check-inator)
@@ -159,7 +160,6 @@ Make sure the capitalisation of the name is correct.""")
                     if data[i]["name"] == volunteer_name:
                         data[i]["bags_checked"] += 1
                         break
-                
                 break
             # message for if invalid weight isn't divisible fully by coin type
             else:
@@ -256,10 +256,12 @@ def quit_session(data):
         print(f"""An error occured that resulted in data failing to save to 'CoinCount.txt' or 'Data.txt'.
 Here is the data currently stored in temporary memory:
 {data}""")
+    
     return False # results in 'active_session' being set to False, ending the while loop
 
 
 ### MAIN PROGRAM ###
+
 
 data = read() # assigns the list created in 'read()' to a variable
 # dictionary of different possible coins, format = coin: [bag value, bag weight, coin weight]
@@ -295,3 +297,4 @@ while active_session == True:
             data = add_new_volunteer(data)
         case "4":
             active_session = quit_session(data)
+# yes i did find random places to add whitespace to make it exactly 300 lines because it makes the autism happy
