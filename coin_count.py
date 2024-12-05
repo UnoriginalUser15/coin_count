@@ -124,7 +124,7 @@ Make sure the capitalisation of the name is correct.""")
             print("You have to input a numerical value for the weight")
             continue
         # breaks while loop if bag weight is correct for chosen coin
-        if round(bag_weight, 2) == coin_dict[coin][1]:
+        if bag_weight == coin_dict[coin][1]:
             print("\nBag weight is valid ^-^\n-------------------")
             # adds 1 to "bags_checked" and "valid_bags" in the 'overall' dictionary along with the value of the bag
             data[0]["bags_checked"] += 1
@@ -253,7 +253,7 @@ def quit_session(data):
         write(data) # writes the current value of the 'data' list into the .txt file
         print("Data has been saved.")
     except:
-        print(f"""An error occured that resulted in data failing to save to 'CoinCount.txt'. 
+        print(f"""An error occured that resulted in data failing to save to 'CoinCount.txt' or 'Data.txt'.
 Here is the data currently stored in temporary memory:
 {data}""")
     return False # results in 'active_session' being set to False, ending the while loop
