@@ -138,7 +138,7 @@ Make sure the capitalisation of the name is correct.""")
             break
         # notifies the user that their bag has negative mass and thus breaks the laws of physics
         elif bag_weight <= 0:
-            print("You need to input value greater than 0 for the weight.")
+            print("You need to input a value greater than 0 for the weight.")
         # checks if an invalid weight is a number of coins off or outright not possible given coin type
         else:
             # invalid weight is divisible fully by coin type
