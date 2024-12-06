@@ -258,7 +258,12 @@ def quit_session(data):
         print(f"""An error occured that resulted in data failing to save to 'CoinCount.txt' or 'Data.txt'.
 Here is the data currently stored in temporary memory:
 {data}""")
-    
+    """this hopefully prevents complete data
+    |    | | 
+    |    | | |
+    -----+-----
+    | |  | |
+    | |  | | __"""
     return False # results in 'active_session' being set to False, ending the while loop
 
 
@@ -281,20 +286,28 @@ valid_menu = ["1", "2", "3", "4"] # used in 'menu()' to verify if menu selection
 active_session = True # used to control if the while loop is active or not
 
 while active_session == True:
-    os.system("cls") # clears the terminal, specifically on windows
-    selection = menu(valid_menu)
-    # runs the process the user requested in the menu
-    match selection:
-        case "1":
-            active_loop = True # this variable is used to control the loop of 'bag_check()'
-            
-            while active_loop:
-                bag_check_output = bag_check(data, coin_dict) # variable that stores the values returned by 'bag_check()'
-                data = bag_check_output[0] # index [0] is for the data that returned
-                active_loop = bag_check_output[1] # index [1] is for the boolian value that's returned
-        case "2":
-            volunteer_info(data)
-        case "3":
-            data = add_new_volunteer(data)
-        case "4":
-            active_session = quit_session(data) # yes i purposely it exactly 300 lines because it makes the autism happy
+    try: # try except catches any errors that may occur from things like keyboard interupts (e.g ctrl + c)
+        os.system("cls") # clears the terminal, specifically on windows
+        selection = menu(valid_menu)
+        # runs the process the user requested in the menu
+        match selection:
+            case "1":
+                active_loop = True # this variable is used to control the loop of 'bag_check()'
+                
+                while active_loop:
+                    bag_check_output = bag_check(data, coin_dict) # variable that stores the values returned by 'bag_check()'
+                    data = bag_check_output[0] # index [0] is for the data that returned
+                    active_loop = bag_check_output[1] # index [1] is for the boolian value that's returned
+            case "2":
+                volunteer_info(data)
+            case "3":
+                data = add_new_volunteer(data)
+            case "4":
+                active_session = quit_session(data)
+    except:
+        print("\nError has occured with you input, returning to menu.")
+        time.sleep(3) # it's everyone's favourite! the fake-loading-time-inator is back!
+
+# hi joel, the song which i am listening to, which is one of my favourite songs might i add, just said skibidi
+# i never took note of that until you mentioned skibidi toilet ruining jazz
+# i just want you to know the consequences of your actions
