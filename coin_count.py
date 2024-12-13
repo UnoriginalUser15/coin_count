@@ -153,7 +153,7 @@ Make sure the capitalisation of the name is correct.""")
                     print(f"""\nYou need to add {int(coin_difference)} coin(s) to the bag.
 -------------------""")
                 else:
-                    print(f"""\nYou need to remove {int(coin_difference)*-1} coin(s) to the bag.
+                    print(f"""\nYou need to remove {int(coin_difference)*-1} coin(s) from the bag.
 -------------------""")
                 # adds 1 to the "bags_checked" key in the 'overall' dictionary in 'data'
                 data[0]["bags_checked"] += 1
